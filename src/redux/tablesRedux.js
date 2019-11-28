@@ -27,6 +27,7 @@ export const fetchFromAPI = () => {
     Axios
       .get(`${api.url}/${api.tables}`)
       .then(res => {
+        debugger
         dispatch(fetchSuccess(res.data));
       })
       .catch(err => {

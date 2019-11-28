@@ -40,7 +40,7 @@ const Kitchen = () => (
             </TableCell>
             <TableCell>
             {row.dishes.map (dish => (
-                <p>{dish}</p>
+                <p key={dish} >{dish}</p>
             ))}
             </TableCell>
             <TableCell>

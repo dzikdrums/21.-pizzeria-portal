@@ -61,18 +61,11 @@ const rows = [
   ),
 ];
 
-const useStyles = makeStyles(theme => ({
-  seeMore: {
-    marginTop: theme.spacing(3),
-  },
-}));
-
-export default function Orders() {
-  const classes = useStyles();
+const Orders = () => {
   return (
     <>
       <Title>Recent Orders</Title>
-      <Table size="small">
+      <Table size="xs">
         <TableHead>
           <TableRow>
             <TableCell>Time</TableCell>
@@ -96,7 +89,7 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <div className={classes.seeMore}>
+      <div >
         <Link color="primary" href="#">
           See more orders
         </Link>
@@ -104,3 +97,5 @@ export default function Orders() {
     </>
   );
 }
+
+export default Orders;

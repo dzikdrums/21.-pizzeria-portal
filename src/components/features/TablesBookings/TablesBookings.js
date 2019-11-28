@@ -56,7 +56,9 @@ const rows = [
   ),
 ];
 
-export default function Tables() {
+const Tables = () => {
+
+  const Link1 = React.forwardRef((props) => <Link to={`${process.env.PUBLIC_URL}/tables/booking/book/123abc`} {...props} />)
 
   return (
     <>
@@ -74,11 +76,11 @@ export default function Tables() {
         <TableBody>
           {rows.map(row => (
             <TableRow key={row.id}>
-              <TableCell className={styles.tableCell} component={props => <Link to={`${process.env.PUBLIC_URL}/tables/booking/book/123abc`} {...props} />}>{row.time}</TableCell>
-              <TableCell className={styles.tableCell} component={props => <Link to={`${process.env.PUBLIC_URL}/tables/booking/book/123abc`} {...props} />}>{row.table1}</TableCell>
-              <TableCell className={styles.tableCell} component={props => <Link to={`${process.env.PUBLIC_URL}/tables/booking/book/123abc`} {...props} />}>{row.table2}</TableCell>
-              <TableCell className={styles.tableCell} component={props => <Link to={`${process.env.PUBLIC_URL}/tables/booking/book/123abc`} {...props} />}>{row.table3}</TableCell>
-              <TableCell className={styles.tableCell} component={props => <Link to={`${process.env.PUBLIC_URL}/tables/booking/book/123abc`} {...props} />}>{row.table4}</TableCell>
+              <TableCell className={styles.tableCell}>{row.time}</TableCell>
+              <TableCell className={styles.tableCell} component={Link1}>{row.table1}</TableCell>
+              <TableCell className={styles.tableCell} component={Link1}>{row.table2}</TableCell>
+              <TableCell className={styles.tableCell} component={Link1}>{row.table3}</TableCell>
+              <TableCell className={styles.tableCell} component={Link1}>{row.table4}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -86,3 +88,5 @@ export default function Tables() {
     </>
   );
 }
+
+export default Tables;

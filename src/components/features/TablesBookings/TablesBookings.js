@@ -5,8 +5,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from '../../common/Title/Title';
-import {Link} from 'react-router-dom';
 import styles from './TablesBookings.module.scss'
+import {  useHistory } from 'react-router-dom';
 
 // Generate Order Data
 function createData(id, time, table1, table2, table3, table4) {
@@ -17,49 +17,63 @@ const rows = [
   createData(
     12,
     '12:00',
-    'reserved',
+    'BillyBoi',
     'available',
     'available',
-    'reserved',
+    'Mark',
   ),
   createData(
     13,
     '13:00',
     'available',
-    'reserved',
+    'Jacob',
     'available',
-    'reserved',
+    'Stephen',
   ),
   createData(
     14,
     '14:00',
-    'reserved',
+    'Harari',
     'available',
-    'reserved',
-    'reserved',
+    'Joseph',
+    'Owane',
   ),
   createData(
     15,
     '15:00',
-    'reserved',
-    'reserved',
+    'Joe',
+    'Steve',
     'available',
-    'reserved',
+    'available',
   ),
   createData(
     16,
     '16:00',
     'available',
     'available',
-    'reserved',
-    'reserved',
+    'Bill',
+    'Donald',
   ),
 ];
 
 const Tables = () => {
+  let history = useHistory();
 
-  const Link1 = React.forwardRef((props) => <Link to={`${process.env.PUBLIC_URL}/tables/booking/book/123abc`} {...props} />)
+  function handleRouting(reservationName) {
+    history.push(`/tables/booking/book/${reservationName}`)
+  }
 
+  function createCell(availability) {
+    if (availability === 'available') {
+      return <TableCell>{availability}</TableCell>;
+    } else {
+      return <TableCell 
+      onClick={() => handleRouting(availability)} 
+      className={styles.tableCellActive}
+      >{availability}</TableCell>
+    }
+  };
+  
   return (
     <>
       <Title>Recent Orders</Title>
@@ -77,10 +91,10 @@ const Tables = () => {
           {rows.map(row => (
             <TableRow key={row.id}>
               <TableCell className={styles.tableCell}>{row.time}</TableCell>
-              <TableCell className={styles.tableCell} component={Link1}>{row.table1}</TableCell>
-              <TableCell className={styles.tableCell} component={Link1}>{row.table2}</TableCell>
-              <TableCell className={styles.tableCell} component={Link1}>{row.table3}</TableCell>
-              <TableCell className={styles.tableCell} component={Link1}>{row.table4}</TableCell>
+              {createCell(row.table1)}
+              {createCell(row.table2)}
+              {createCell(row.table3)}
+              {createCell(row.table4)}
             </TableRow>
           ))}
         </TableBody>

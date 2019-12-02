@@ -11,7 +11,6 @@ const Tables = props => {
   let value = 0;
   value = props.location.pathname === '/tables/booking/events/new' ? 1 : 0;
 
-  console.log(value);
   return (
   <div className={styles.component}>
     <Paper className={styles.paper}>

@@ -4,147 +4,131 @@ import TextField from '@material-ui/core/TextField';
 import {Button} from '@material-ui/core';
 import styles from './Form.module.scss';
 
-const Form = (props) => {
-    const [table, setTable, time, setTime, length, setLength] = React.useState();
+class Form extends React.Component {
+  state = {
+    name: 'Name',
+    phoneNumber: '123-456-789',
+    table: 'Table 1',
+    time: '12:00',
+    length: 'one hour',
+    tabs: this.props.tabValue,
+    tables: [
+      {
+        value: 'Table 1',
+      },
+      {
+        value: 'Table 2',
+      },
+      {
+        value: 'Table 3',
+      },
+      {
+        value: 'Table 4',
+      },
+    ],
+    hours: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'],
+    lengths: ['one hour', 'two hours', 'three hours'],
+  };
 
-
-    const handleTableChange = event => {
-        setTable(event.target.value);
-      };
-
-    const handleTimeChange = event => {
-      setTime(event.target.value);
+    handleInputChange = e => {
+      console.log(this.state);
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
     };
 
-    const handleLengthChange = event => {
-      setLength(event.target.value);
-    };
+    addItem =(e) => {
+      e.preventDefault();
+      console.log(e);
+    }
 
-    
-      const tables = [
-        {
-          value: '1',
-          label: 'Table1',
-        },
-        {
-          value: '2',
-          label: 'Table2',
-        },
-        {
-          value: '3',
-          label: 'Table3',
-        },
-        {
-          value: '4',
-          label: 'Table4',
-        },
-      ];
-
-
+    render() {
     return(
-        <form className={styles.container} noValidate autoComplete="off">
-        <TextField
+        <form 
+          className={styles.container} 
+          noValidate 
+          autoComplete="off"
+          onSubmit={(e) => this.addItem(e)}
+          >
+         <TextField
           disabled
-          id="standard-disabled"
           label="Disabled"
-          defaultValue= {props.tabValue === 0 ? 'Booking' : 'Event' }
+          value= {this.props.tabValue === 0 ? 'Booking' : 'Event' }
           className={styles.textField}
           margin="normal"
         />
         <TextField
-          id="select-table"
           select
-          label="Select"
+          label="Select table"
           className={styles.textField}
-          value={table}
-          onChange={handleTableChange}
-          SelectProps={{
-            MenuProps: {
-              className: styles.menu,
-            },
-          }}
+          defaultValue={this.state.table}
+          value={this.state.table}
+          onChange={this.handleInputChange}
           helperText="Please select your table"
           margin="normal"
+          name="table"
         >
-          {tables.map(option => (
+          {this.state.tables.map(option => (
             <MenuItem key={option.value} value={option.value}>
-              {option.label}
+              {option.value}
             </MenuItem>
           ))}
         </TextField>
         <TextField
-          id="time"
           select
+          name="time"
           label="Select"
           className={styles.textField}
-          value={time}
-          onChange={handleTimeChange}
-          SelectProps={{
-            MenuProps: {
-              className: styles.menu,
-            },
-          }}
+          value={this.state.time}
+          onChange={this.handleInputChange}
           helperText="Please select time of booking"
           margin="normal"
         >
-            <MenuItem value={1}>
-              12:00
+          {this.state.hours.map(hour => (
+            <MenuItem key={hour} value={hour}>
+              {hour}
             </MenuItem>
-            <MenuItem value={1}>
-              13:00
-            </MenuItem>
-            <MenuItem value={1}>
-              14:00
-            </MenuItem>
-            
+          ))}
         </TextField>
         <TextField
-          id="length"
+          name="length"
           select
-          label="Select"
           className={styles.textField}
-          value={length}
-          onChange={handleLengthChange}
-          SelectProps={{
-            MenuProps: {
-              className: styles.menu,
-            },
-          }}
+          value={this.state.length}
+          onChange={this.handleInputChange}
           helperText="Please select length of booking"
           margin="normal"
         >
-            <MenuItem value={1}>
-              1 hour
+          {this.state.lengths.map(hour => (
+            <MenuItem key={hour} value ={hour}>
+              {hour}
             </MenuItem>
-            <MenuItem value={1}>
-              2 hour
-            </MenuItem>
-            <MenuItem value={1}>
-              3 hour
-            </MenuItem>
-            
+          ))};
         </TextField>
         <TextField
           required
-          id="standard-required"
           label="Required"
-          defaultValue="Name"
+          value={this.state.name}
           className={styles.textField}
           margin="normal"
-        />
+          onChange={this.handleInputChange}
+          name="name"
+          />
         <TextField
           required
           id="standard-required"
           label="Required"
-          defaultValue="Phone Number"
+          value={this.state.phoneNumber}
           className={styles.textField}
           margin="normal"
+          onChange={this.handleInputChange}
+          name="phoneNumber"
         />
         <Button className={styles.button} variant="contained" type="submit" color="primary">
             Add new
         </Button>
         </form>
-    )
+    )}
 }
 
 export default Form;

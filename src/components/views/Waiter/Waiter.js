@@ -55,7 +55,7 @@ class Waiter extends React.Component {
       default:
         return null;
     }
-  };
+  }
 
   render() {
     const { loading: { active, error }, tables } = this.props;

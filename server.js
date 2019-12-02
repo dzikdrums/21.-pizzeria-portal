@@ -1,5 +1,4 @@
 /* global require, process */
-
 const fs = require('fs');
 const path = require('path');
 const jsonServer = require('json-server');
@@ -11,15 +10,21 @@ const middlewares = jsonServer.defaults({
 });
 const port = process.env.PORT || 3131;
 
-server.get(/^\/panel.*/, (req, res) => {
-  if (req.url === '/panel') {
+server.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+server.get(/^\/panel.*/, (req,res) =>{
+  if(req.url === '/panel'){
     req.url += '/';
   }
-  const filePath = __dirname + req.url.replace('/panel', '/build');
-  if (fs.existsSync(filePath)) {
+  const filePath = __dirname+req.url.replace('/panel', '/build');
+  if(fs.existsSync(filePath)){
     res.sendFile(filePath);
   } else {
-    res.sendFile(path.join(__dirname + '/build/index.html'));
+    res.sendFile(path.join(__dirname+'/build/index.html'));
   }
 });
 
@@ -33,6 +38,7 @@ server.use(function(req, res, next) {
   }
   next();
 });
+
 
 server.use(middlewares);
 server.use(router);

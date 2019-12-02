@@ -5,7 +5,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from '../../common/Title/Title';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {Paper, Button} from '@material-ui/core';
 import styles from './Tables.module.scss';
@@ -31,7 +30,7 @@ const TablesBookingEdit = (props) => {
   return (
     <div className={styles.component}>
     <Paper className={styles.paper}>
-    <Title>Order 123abc</Title>
+    <Title>{props.match.params.id}</Title>
     <Table size="small">
       <TableHead>
         <TableRow>

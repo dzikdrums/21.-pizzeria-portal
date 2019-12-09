@@ -5,7 +5,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from '../../common/Title/Title';
-import styles from './TablesBookings.module.scss'
+import styles from './TablesBookings.module.scss';
 import {  useHistory } from 'react-router-dom';
 
 // Generate Order Data
@@ -60,7 +60,7 @@ const Tables = () => {
   let history = useHistory();
 
   function handleRouting(reservationName) {
-    history.push(`/tables/booking/book/${reservationName}`)
+    history.push(`/tables/booking/book/${reservationName}`);
   }
 
   function createCell(availability) {
@@ -68,11 +68,11 @@ const Tables = () => {
       return <TableCell>{availability}</TableCell>;
     } else {
       return <TableCell 
-      onClick={() => handleRouting(availability)} 
-      className={styles.tableCellActive}
-      >{availability}</TableCell>
+        onClick={() => handleRouting(availability)} 
+        className={styles.tableCellActive}
+      >{availability}</TableCell>;
     }
-  };
+  }
   
   return (
     <>
@@ -101,6 +101,6 @@ const Tables = () => {
       </Table>
     </>
   );
-}
+};
 
 export default Tables;

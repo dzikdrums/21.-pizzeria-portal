@@ -28,62 +28,62 @@ function App() {
   return (
     <BrowserRouter basename={'/panel'}>
       <Provider store={Store}>
-      <StylesProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <MainLayout>
-            <Switch>
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/`}
-                component={Homepage}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + '/login'}
-                component={Modal}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + '/kitchen'}
-                component={Kitchen}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + '/tables'}
-                component={Tables}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + '/waiter'}
-                component={Waiter}
-              />
-            </Switch>
-            <Switch>
-              <Route
-                path={process.env.PUBLIC_URL + '/tables/booking/book/:id'}
-                component={TablesBookingEdit}
-              />
-              <Route
-                exact
-                path={process.env.PUBLIC_URL + '/tables/booking/new'}
-                component={TablesBookingNew}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + '/tables/events/event/:id'}
-                component={TablesEventsEdit}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + '/tables/events/new'}
-                component={TablesEventsNew}
-              />
-              <Route
-                path={process.env.PUBLIC_URL + '/waiter/ordering/order/:id'}
-                component={WaiterOrderEdit}
-              />{' '}
-              <Route
-                path={process.env.PUBLIC_URL + '/waiter/ordering/new'}
-                component={WaiterOrderNew}
-              />
-            </Switch>
-          </MainLayout>
-        </ThemeProvider>
-      </StylesProvider>
+        <StylesProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <MainLayout>
+              <Switch>
+                <Route
+                  exact
+                  path={`${process.env.PUBLIC_URL}/`}
+                  component={Homepage}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + '/login'}
+                  component={Modal}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + '/kitchen'}
+                  component={Kitchen}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + '/tables'}
+                  component={Tables}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + '/waiter'}
+                  component={Waiter}
+                />
+              </Switch>
+              <Switch>
+                <Route
+                  path={process.env.PUBLIC_URL + '/tables/booking/book/:id'}
+                  component={TablesBookingEdit}
+                />
+                <Route
+                  exact
+                  path={process.env.PUBLIC_URL + '/tables/booking/new'}
+                  component={TablesBookingNew}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + '/tables/events/event/:id'}
+                  component={TablesEventsEdit}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + '/tables/events/new'}
+                  component={TablesEventsNew}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + '/waiter/ordering/order/:id'}
+                  component={WaiterOrderEdit}
+                />{' '}
+                <Route
+                  path={process.env.PUBLIC_URL + '/waiter/ordering/new'}
+                  component={WaiterOrderNew}
+                />
+              </Switch>
+            </MainLayout>
+          </ThemeProvider>
+        </StylesProvider>
       </Provider>
     </BrowserRouter>
   );

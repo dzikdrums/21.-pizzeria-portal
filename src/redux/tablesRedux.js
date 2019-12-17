@@ -39,14 +39,14 @@ export const fetchFromAPI = () => {
   };
 };
 
-export const updateStatus = () => {
+export const updateStatus = (id) => {
   return (dispatch, getState) => {
     dispatch(fetchStarted());
 
     Axios
       .get(`${api.url}/${api.tables}`)
       .then(res => {
-        dispatch(changeStatus(res.data));
+        dispatch(changeStatus(res.data, id));
       })
       .catch(err => {
         dispatch(fetchError(err.message || true));
@@ -67,9 +67,10 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case CHANGE_STATUS: {
+      console.log(action);
       return {
-        data: {...statePart.data.map(item =>
-          item.id == action.payload ? { ...item, status: 'ordered'} : item)},        
+        data: [...statePart.data.map(item =>
+          item.id == action.payload ? { ...item, status: 'ordered', order: 567} : item)],        
         loading: {
           active: false,
           error: false,

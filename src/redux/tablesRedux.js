@@ -46,7 +46,7 @@ export const updateStatus = (id) => {
     Axios
       .get(`${api.url}/${api.tables}`)
       .then(res => {
-        dispatch(changeStatus(res.data, id));
+        dispatch(changeStatus({data: res.data, id}));
       })
       .catch(err => {
         dispatch(fetchError(err.message || true));
